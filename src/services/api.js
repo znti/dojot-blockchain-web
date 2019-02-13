@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://localhost:3000"
+  baseURL: "https://iotmid-docker.cpqd.com.br/blockchain/api"
 });
 
 export default api;

@@ -85,15 +85,15 @@ export default class App extends Component {
               type="submit"
               onClick={e => this.handleSubmit(e)}
             >
-              validate
+              validar
             </button>
           </form>
           <div className="message">
             {this.state.status === 200 && (
-              <div className="success">Dados Validos</div>
+              <div className="success">Dados Válidos</div>
             )}
             {this.state.status === 500 && (
-              <div className="error">Dados Invalidos</div>
+              <div className="error">Dados Inválidos</div>
             )}
           </div>
         </div>

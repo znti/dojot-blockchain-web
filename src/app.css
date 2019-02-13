@@ -29,7 +29,7 @@
   height: 40px;
   padding: 0 16px;
   min-width: 64px;
-  width: 100%;
+  width: 402px;
   line-height: 36px;
   font-family: "Open Sans", "Roboto", sans-serif;
   font-size: 16px;
@@ -177,4 +177,14 @@
   to {
     transform: translate(16px, 10px) scale(1);
   }
+}
+
+.success {
+  font-size: 24px;
+  color: #49b488;
+}
+
+.error {
+  font-size: 24px;
+  color: rgba(227, 39, 64, 0.9);
 }

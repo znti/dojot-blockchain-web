@@ -1,5 +1,6 @@
 {
   "name": "dojot-blockchain-web",
+  "homepage" : "http://10.202.21.65/blockchain",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
