@@ -3,13 +3,14 @@ import logo from "./assets/images/logo-bl.png";
 import "./app.css";
 
 import api from "./services/api";
+import MyInput from "./components/MyInput";
 
 export default class App extends Component {
   state = {
     body: {
       org_id: "Dojot",
       utility_token: "16dfc0b0-2fa6-11e9-a313-67182eaaf62a",
-      register_timestamp: 0,
+      register_timestamp: "",
       data: ""
     },
     status: 0
@@ -34,33 +35,18 @@ export default class App extends Component {
           }
         });
       } else {
-        this.setState({
-          status: 500,
-          body: {
-            org_id: "Dojot",
-            utility_token: "16dfc0b0-2fa6-11e9-a313-67182eaaf62a",
-            register_timestamp: 0,
-            data: ""
-          }
-        });
+        this.setState({ status: 500 });
       }
     } catch (error) {
       console.log(error);
-      this.setState({
-        status: 500,
-        body: {
-          org_id: "Dojot",
-          utility_token: "16dfc0b0-2fa6-11e9-a313-67182eaaf62a",
-          register_timestamp: 0,
-          data: ""
-        }
-      });
+      this.setState({ status: 500 });
     }
   };
 
   handleChangeText = e => {
     this.setState({
       body: {
+        ...this.state.body,
         [e.target.name]: e.target.value
       }
     });
@@ -79,24 +65,22 @@ export default class App extends Component {
         </div>
         <div className="form-wrapper">
           <form className="form-content">
-            <label className="label-wrapper">
-              <div className="label">Timestamp</div>
-              <input
-                type="text"
-                value={this.state.body.register_timestamp}
-                onChange={this.handleChangeText}
-                name="register_timestamp"
-              />
-            </label>
-            <label className="label-wrapper">
-              <div className="label">Data</div>
-              <input
-                type="text"
-                value={this.state.body.data}
-                onChange={this.handleChangeText}
-                name="data"
-              />
-            </label>
+            <MyInput
+              type={"text"}
+              name={"register_timestamp"}
+              placeholder={"Timestamp"}
+              value={this.state.body.register_timestamp}
+              change={this.handleChangeText}
+            />
+
+            <MyInput
+              type={"text"}
+              name={"data"}
+              placeholder={"Data"}
+              value={this.state.body.data}
+              change={this.handleChangeText}
+            />
+
             <button
               className="btn-submit"
               type="submit"
