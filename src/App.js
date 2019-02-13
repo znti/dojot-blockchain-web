@@ -30,7 +30,7 @@ export default class App extends Component {
           body: {
             org_id: "Dojot",
             utility_token: "16dfc0b0-2fa6-11e9-a313-67182eaaf62a",
-            register_timestamp: 0,
+            register_timestamp: "",
             data: ""
           }
         });
@@ -80,9 +80,8 @@ export default class App extends Component {
               value={this.state.body.data}
               change={this.handleChangeText}
             />
-
             <button
-              className="btn-submit"
+              className="outline-btn btn-color-green"
               type="submit"
               onClick={e => this.handleSubmit(e)}
             >
@@ -90,8 +89,12 @@ export default class App extends Component {
             </button>
           </form>
           <div className="message">
-            {this.state.status === 200 && <div className="success">Valid</div>}
-            {this.state.status === 500 && <div className="error">Invalid</div>}
+            {this.state.status === 200 && (
+              <div className="success">Dados Validos</div>
+            )}
+            {this.state.status === 500 && (
+              <div className="error">Dados Invalidos</div>
+            )}
           </div>
         </div>
       </Fragment>
