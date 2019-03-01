@@ -18,41 +18,61 @@ export default class App extends Component {
 
   handleSubmit = async e => {
     e.preventDefault();
+		console.log('This is the right one');
     try {
-      const { body } = this.state;
+      const body = {...this.state.body};
       body.data = JSON.parse(body.data);
+			body.register_timestamp = parseInt(body.register_timestamp);
       console.log(body);
+			await this.setState({status: 0})
       const response = await api.post("/", body);
       console.log(response);
       if (response.status === 200) {
-        this.setState({
-          status: 200,
-          body: {
-            org_id: "Dojot",
-            utility_token: "16dfc0b0-2fa6-11e9-a313-67182eaaf62a",
-            register_timestamp: "",
-            data: ""
-          }
-        });
+        this.setState({ status: 200 }, () => {
+					setTimeout(() => {this.setState({status: 0})}, 2500);
+				});
+//        this.setState({
+//          status: 200,
+//          body: {
+//            org_id: "Dojot",
+//            utility_token: "16dfc0b0-2fa6-11e9-a313-67182eaaf62a",
+//            register_timestamp: "",
+//            data: ""
+//          }
+//        });
       } else {
-        this.setState({ status: 500 });
+//        this.setState({ status: 500 });
+        this.setState({ status: 500 }, () => {
+					setTimeout(() => {this.setState({status: 0})}, 2500);
+				});
       }
     } catch (error) {
       console.log(error);
-      this.setState({ status: 500 });
+//      this.setState({ status: 500 });
+        this.setState({ status: 500 }, () => {
+					setTimeout(() => {this.setState({status: 0})}, 2500);
+				});
     }
   };
 
   handleChangeText = e => {
+
+		let fieldName = e.target.name;
+		let fieldValue = e.target.value;
+//		if(fieldName === 'register_timestamp') {
+//				fieldValue = parseInt(fieldValue);
+//		}
+
     this.setState({
       body: {
         ...this.state.body,
-        [e.target.name]: e.target.value
+        [fieldName]: fieldValue,
       }
     });
   };
 
   render() {
+		console.log('This is the new one');
     return (
       <Fragment>
         <div className="header-whapper">
